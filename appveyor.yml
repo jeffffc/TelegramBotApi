@@ -8,6 +8,7 @@ before_build:
             # choco install nuget.commandline -y
         }
   - nuget restore
+
 build_script:
   - msbuild TelegramBotApi.sln
 
