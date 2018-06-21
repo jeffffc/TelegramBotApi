@@ -30,7 +30,7 @@ after_build:
             git clone https://github.com/jeffffc/TelegramBotApi.git -b gh-pages origin_site -q
             Copy-Item origin_site/.git docs/_site -recurse
             CD docs/_site
-            git add -A
-            git commit -m "Auto Generated Docs"
-            git push origin gh-pages
+            git add -A 2>&1 | % { $_.ToString() } 
+            git commit -m "Auto Generated Docs" -q 2>&1 | % { $_.ToString() } 
+            git push origin gh-pages -q --porcelain 2>&1 | % { $_.ToString() } 
         }
