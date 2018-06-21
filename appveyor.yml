@@ -27,10 +27,10 @@ after_build:
             Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:git_token):x-oauth-basic@github.com`n"
             git config --global user.email $env:git_email
             git config --global user.name $env:git_user
-            git clone https://github.com/jeffffc/TelegramBotApi.git -b gh-pages origin_site -q
-            Copy-Item origin_site/.git _site -recurse
-            CD _site
+            git clone https://github.com/jeffffc/TelegramBotApi.git -b gh-pages origin_site
+            CD origin_site
+            Write-Output pwd
             git add -A 2>&1
-            git commit -m "Auto Generated Docs" -q
-            git push origin gh-pages -q
+            git commit -m "Auto Generated Docs" 
+            git push origin gh-pages
         }
