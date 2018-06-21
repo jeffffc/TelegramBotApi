@@ -17,8 +17,8 @@ after_build:
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
         {
             # & nuget install docfx.console -Version 2.18.4 -Source https://www.myget.org/F/docfx/api/v3/index.json
-            # & docfx.console.2.18.4\tools\docfx docfx.json
-            & docfx docfx.json
+            # & docfx.console.2.18.4\tools\docfx docs\docfx.json
+            & docfx docs\docfx.json
             if ($lastexitcode -ne 0){
               throw [System.Exception] "docfx build failed with exit code $lastexitcode."
             }
@@ -31,6 +31,6 @@ after_build:
             Copy-Item origin_site/.git _site -recurse
             CD _site
             git add -A 2>&1
-            git commit -m "CI Updates" -q
+            git commit -m "Auto Generated Docs" -q
             git push origin gh-pages -q
         }
